@@ -3,11 +3,14 @@ import React, { Fragment, useState, useEffect } from 'react';
 //components
 import Header from './components/Header'
 import Formulario from './components/Formulario'
+import Resultado from './components/Resultado'
+import Error from './components/Error'
 
 function App() {
 
   const [query, saveQuery] = useState({})
-  
+  const [result, saveResult] = useState({})
+  const [error, saveError] = useState(false)
 
   useEffect(()=>{
     const consultarAPI = async () => {
@@ -20,11 +23,22 @@ function App() {
       const respuestaFetch = await fetch(url)
       const respuesta = await respuestaFetch.json()
 
-      console.log(respuesta)
+      saveResult(respuesta)
+
+      respuesta.cod==='404' ? saveError(true) : saveError(false)
     }
     consultarAPI()
 
   }, [query])
+
+
+  let componenteResultado
+  if(error){
+    console.log("ERROR")
+    componenteResultado = <Error mensaje='Ciudad no encontrada'/>
+  }else{
+    componenteResultado = <Resultado result={result}/>
+  }
 
   return (
     <Fragment>
@@ -36,7 +50,9 @@ function App() {
             <div className='col m6 s12'>
               <Formulario saveQuery={saveQuery}/>
             </div>
-            <div className='col m6 s12'>2</div>
+            <div className='col m6 s12'>
+              {componenteResultado}
+            </div>
           </div>
         </div>
       </div>
