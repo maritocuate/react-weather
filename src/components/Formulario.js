@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 
+import Error from './Error'
+
 const Formulario = ({saveQuery}) => {
 
     const [location, saveLocation] = useState({
@@ -32,7 +34,7 @@ const Formulario = ({saveQuery}) => {
 
     return (
         <form onSubmit={sendForm}>
-            {error && <p className='red darken-4 error'>Todos los campos son obligatorios</p>}
+            {error && <Error mensaje='Todos los campos son obligatorios'/>}
 
             <div className='input-field col s12'>
                 <input type='text' name='ciudad' id='ciudad' onChange={changeLocation}/>
