@@ -34,7 +34,6 @@ function App() {
 
   let componenteResultado
   if(error){
-    console.log("ERROR")
     componenteResultado = <Error mensaje='Ciudad no encontrada'/>
   }else{
     componenteResultado = <Resultado result={result}/>

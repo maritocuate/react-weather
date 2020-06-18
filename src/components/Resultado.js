@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 const Resultado = ({result}) => {
 
@@ -23,4 +24,8 @@ const Resultado = ({result}) => {
     );
 }
  
+Resultado.propTypes = {
+    result: PropTypes.object.isRequired
+}
+
 export default Resultado;

@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types'
 
 import Error from './Error'
 
@@ -66,4 +67,8 @@ const Formulario = ({saveQuery}) => {
     );
 }
  
+Formulario.propTypes = {
+    saveQuery: PropTypes.func.isRequired
+}
+
 export default Formulario;
